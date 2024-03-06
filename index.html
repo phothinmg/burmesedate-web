@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burmese Date</title>
+    <script src="https://cdn.inovar.dev/js-css%2Fburmese.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b9ad49dae6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./assets//index.css" />
+    <link
+      rel="shortcut icon"
+      href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/WikiProject_Myanmar_peacock.svg/1024px-WikiProject_Myanmar_peacock.svg.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="top">
+        <h2>Burmese Date</h2>
+        <strong><p>Burmese Calendar API</p></strong>
+        <p id="wt" class="clock"></p>
+        <a href="https://github.com/burmesedate" target="_blank"
+          ><i class="fa-brands fa-github fa-2xl"></i
+        ></a>
+      </div>
+      <button class="nav-btn" role="button"><a href="">Projects</a></button>
+      <hr class="one" />
+      <p id="ssy" style="font-weight: bold"></p>
+      <hr class="one" />
+      <h3>About Burmese Calendar</h3>
+      <p>
+        The Burmese calendar is a traditional calendar used in Myanmar, also
+        known as Burma. It is based on an ancient astrological system and is
+        known as the "Myanmar Era.
+      </p>
+      <p>
+        "The Burmese calendar has a long and rich history, dating back over
+        2,000 years. It is closely tied to Buddhist tradition and is used to
+        mark important religious festivals and events.
+      </p>
+      <p>
+        Today, the calendar is used in Myanmar(Burma) as one of the two official
+        calendars alongside the Gregorian calendar. It is still used to mark
+        traditional holidays such as the Burmese New Year, and other traditional
+        festivals, many of which are Burmese Buddhist in nature.
+      </p>
+    </main>
+    <script>
+      var lang, x, mdt, ssy, mmy, mmm, mmd, yyz, astro, dgh, hod, hod2;
+      lang = 1;
+      x = new ceMmTranslate();
+      mdt = new ceMmDateTime();
+      ssy = "သာသနာနှစ်" + " " + x.T(mdt.ToMString("&YYYY"), lang);
+      mmy = "မြန်မာသက္ကရာဇ်" + " " + x.T(mdt.ToMString("&yyyy"), lang);
+      mmm = x.T(mdt.ToMString("&M"), lang);
+      mmd = x.T(mdt.ToMString("&P &f"), lang) + " " + "ရက်";
+      if (ceMmDateTime.cal_yatyaza(mdt.mm, mdt.w) == 1) {
+        yyz = "ရက်ရာဇာ";
+      } else if (ceMmDateTime.cal_pyathada(mdt.mm, mdt.w) == 1) {
+        yyz = "ပြသဒါး";
+      } else if (ceMmDateTime.cal_pyathada(mdt.mm, mdt.w) == 2) {
+        yyz = "မွန်းလွဲပြသဒါး";
+      } else {
+        yyz = "";
+      }
+      astro = x.T(`${mdt.astro}`, lang);
+      dgh = "နဂါးခေါင်း " + " " + x.T(mdt.nagahle, lang) + " " + "လှည့်";
+      hod = x.T(`${mdt.holidays}`, lang);
+      hod2 = x.T(`${mdt.holidays2}`, lang);
+      document.getElementById("ssy").innerHTML =
+        `${ssy}` +
+        " --> " +
+        `${mmy}` +
+        " --> " +
+        `${mmm}` +
+        "  -->  " +
+        `${mmd}` +
+        "  -->  " +
+        `${yyz}` +
+        "  -->  " +
+        `${dgh}`;
+    </script>
+    <script>
+      setInterval(function () {
+        var dt = new Date();
+        var dat = dt.toLocaleTimeString();
+        document.getElementById("wt").innerHTML = dat;
+      }, 1000);
+    </script>
+ 
+  </body>
+</html>
